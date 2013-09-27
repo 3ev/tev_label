@@ -112,6 +112,24 @@ There is a single view helper available, which will render a label from the data
 <tvl:label key="my.label.one" markers="{':marker': 'marker replaced'}" />
 ```
 
+### Normal helpers
+
+Functions same as the view helper but can be used in controllers and other php files.
+
+Inject the helper class
+
+```php
+/**
+ * @var \Tev\TevLabel\Helper\Label
+ * @inject
+*/
+protected $label;
+```
+Use the get() method
+```php
+$this->label->get($key, $markers);
+```
+
 ## Dependencies
 
 - [TYPO3 Fluid Extensions](https://github.com/FluidTYPO3)
