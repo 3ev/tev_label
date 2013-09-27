@@ -25,7 +25,7 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
     protected static $labelCache = array();
 
     /**
-     * @var \Tev\TevLabel\Helper\Label
+     * @var \Tev\TevLabel\Utility\Label
      * @inject
     */
     protected $label;

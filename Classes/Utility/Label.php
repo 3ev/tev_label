@@ -1,14 +1,14 @@
 <?php
-namespace Tev\TevLabel\Helper;
+namespace Tev\TevLabel\Utility;
 
 /**
- * Helper to render database labels.
+ * Utility to render database labels.
  *
  * Usage:
  *
  * ```
  * /**
-     * @var \Tev\TevLabel\Helper\Label
+     * @var \Tev\TevLabel\Utility\Label
      * @inject
     *\/
  * protected $label;
@@ -18,7 +18,7 @@ namespace Tev\TevLabel\Helper;
  *
  * @author Muthuswamy Kumaresan <muthu@3ev.com>, 3ev
  * @package Tev\TevLabel
- * @subpackage Helper
+ * @subpackage Utility
  */
 class Label
 {

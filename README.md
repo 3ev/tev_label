@@ -120,7 +120,7 @@ Inject the helper class
 
 ```php
 /**
- * @var \Tev\TevLabel\Helper\Label
+ * @var \Tev\TevLabel\Utility\Label
  * @inject
 */
 protected $label;
