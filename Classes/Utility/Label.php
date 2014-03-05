@@ -68,8 +68,6 @@ class Label
             $db = $GLOBALS['TYPO3_DB'];
 
             if (($labels = $this->getCache()->get('labels_' . $storageUid)) === false) {
-                error_log('Not in cache');
-
                 $labels = $db->exec_SELECTgetRows(
                     'label_key, label_value',
                     'tx_tevlabel_labels',
