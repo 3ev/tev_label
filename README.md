@@ -1,6 +1,6 @@
 # 3ev Label TYPO3 Extension
 
-**Version:** 1.1.1
+**Version:** 1.1.2
 
 Allows management of functional labels through the database and list views.
 
