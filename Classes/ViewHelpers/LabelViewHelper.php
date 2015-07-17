@@ -10,7 +10,7 @@ namespace Tev\TevLabel\ViewHelpers;
  * ```
  * {namespace tvl=Tev\TevLabel\ViewHelpers}
  *
- * <tvl:label key="my.label" markers="{':markerA': 'hello', ':markerB': 'hello'}" />
+ * <tvl:label key="my.label" markers="{_markerA: 'hello', _markerB: 'hello'}" />
  * ```
  *
  * @author Ben Constable <benconstable@3ev.com>, 3ev

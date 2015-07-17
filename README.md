@@ -107,7 +107,7 @@ There is a single view helper available, which will render a label from the data
 <tvl:label key="my.label.one" />
 
 <!-- Second label with marker replaced -->
-<tvl:label key="my.label.one" markers="{':marker': 'marker replaced'}" />
+<tvl:label key="my.label.one" markers="{_marker: 'marker replaced'}" />
 ```
 
 ### Normal helpers
