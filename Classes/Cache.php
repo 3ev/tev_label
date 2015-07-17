@@ -16,7 +16,7 @@ class Cache
             \TYPO3\CMS\Core\Cache\Cache::initializeCachingFramework();
 
             try {
-                $cache = $GLOBALS['typo3CacheManager']->getCache('tev_label_label_cache');
+                $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('tev_label_label_cache');
 
                 $cache->flush();
             } catch(\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
