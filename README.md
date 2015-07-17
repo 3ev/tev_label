@@ -1,7 +1,5 @@
 # 3ev Label TYPO3 Extension
 
-**Version:** 1.1.2
-
 Allows management of functional labels through the database and list views.
 
 ## Installation
@@ -109,7 +107,7 @@ There is a single view helper available, which will render a label from the data
 <tvl:label key="my.label.one" />
 
 <!-- Second label with marker replaced -->
-<tvl:label key="my.label.one" markers="{':marker': 'marker replaced'}" />
+<tvl:label key="my.label.one" markers="{_marker: 'marker replaced'}" />
 ```
 
 ### Normal helpers
@@ -133,4 +131,3 @@ $this->label->get($key, $markers);
 ## Dependencies
 
 - [TYPO3 Fluid Extensions](https://github.com/FluidTYPO3)
-- [tev](https://github.com/3ev/tev_label)

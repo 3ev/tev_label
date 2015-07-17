@@ -99,9 +99,9 @@ class Label
             \TYPO3\CMS\Core\Cache\Cache::initializeCachingFramework();
 
             try {
-                self::$cache = $GLOBALS['typo3CacheManager']->getCache('tev_label_label_cache');
+                self::$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('tev_label_label_cache');
             } catch(\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
-                self::$cache = $GLOBALS['typo3CacheFactory']->create(
+                self::$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheFactory')->create(
                     'tev_label_label_cache',
                     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tev_label_label_cache']['frontend'],
                     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tev_label_label_cache']['backend'],
