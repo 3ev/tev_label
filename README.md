@@ -10,24 +10,6 @@ Install into TYPO3 with Composer. Add the following config to your `composer.jso
 {
     "require": {
         "3ev/tev_label": "master"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/3ev/tev_label"
-        }
-    ]
-}
-```
-
-If your `composer.json` sits outside of your TYPO3 directory, you'll need to add:
-
-```json
-{
-    "extra": {
-        "installer-paths": {
-            "path/to/typo3/typo3conf/ext/{$name}/": ["type:typo3-cms-extension"]
-        }
     }
 }
 ```
@@ -131,3 +113,4 @@ $this->label->get($key, $markers);
 ## Dependencies
 
 - [TYPO3 Fluid Extensions](https://github.com/FluidTYPO3)
+- [3ev Tev Core](https://github.com/3ev/tev)

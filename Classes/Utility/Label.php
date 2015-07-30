@@ -27,7 +27,7 @@ class Label
      *
      * @var array $labelCache
      */
-    protected static $labelCache = array();
+    protected static $labelCache = [];
 
     /**
      * Label persistent cache.
@@ -46,7 +46,7 @@ class Label
      * @param int    $storageFolderUid Storage folder override
      * @return string Found label, or the key if key could not be found
      */
-    public function get($key, $markers = array(), $storageUid = null)
+    public function get($key, $markers = [], $storageUid = null)
     {
         if ($storageUid === null) {
             $storageUid = $GLOBALS['TSFE']->rootLine[0]['storage_pid'];
@@ -64,7 +64,7 @@ class Label
         };
 
         if (!is_array(self::$labelCache[$storageUid])) {
-            self::$labelCache[$storageUid] = array();
+            self::$labelCache[$storageUid] = [];
             $db = $GLOBALS['TYPO3_DB'];
 
             if (($labels = $this->getCache()->get('labels_' . $storageUid)) === false) {
