@@ -27,7 +27,7 @@ class Label
      *
      * @var array $labelCache
      */
-    protected static $labelCache = array();
+    protected static $labelCache = [];
 
     /**
      * Label persistent cache.
@@ -46,7 +46,7 @@ class Label
      * @param int    $storageFolderUid Storage folder override
      * @return string Found label, or the key if key could not be found
      */
-    public function get($key, $markers = array(), $storageUid = null)
+    public function get($key, $markers = [], $storageUid = null)
     {
         if ($storageUid === null) {
             $storageUid = $GLOBALS['TSFE']->rootLine[0]['storage_pid'];
@@ -57,21 +57,23 @@ class Label
 
         // Replace markers in the label with dynamic values
         $replaceValues = function ($label) use ($markers) {
-            foreach ($markers as $key => $value) {
-                $label = str_replace($key, $value, $label);
+            if ($markers) {
+                foreach ($markers as $key => $value) {
+                    $label = str_replace($key, $value, $label);
+                }
             }
             return $label;
         };
 
         if (!is_array(self::$labelCache[$storageUid])) {
-            self::$labelCache[$storageUid] = array();
+            self::$labelCache[$storageUid] = [];
             $db = $GLOBALS['TYPO3_DB'];
 
             if (($labels = $this->getCache()->get('labels_' . $storageUid)) === false) {
                 $labels = $db->exec_SELECTgetRows(
                     'label_key, label_value',
                     'tx_tevlabel_labels',
-                    'hidden = 0 AND deleted = 0 AND pid  = ' . $db->quoteStr($storageUid)
+                    'hidden = 0 AND deleted = 0 AND pid  = ' . $db->quoteStr($storageUid, null)
                 );
                 $this->getCache()->set('labels_' . $storageUid, $labels);
             }

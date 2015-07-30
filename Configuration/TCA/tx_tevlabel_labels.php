@@ -1,7 +1,7 @@
 <?php
 
-return array(
-    'ctrl' => array(
+return [
+    'ctrl' => [
         'title' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels',
         'label' => 'label_key',
         'tstamp' => 'tstamp',
@@ -10,55 +10,55 @@ return array(
         'delete' => 'deleted',
         'searchFields' => 'title,label_key,label_value',
         
-        'enablecolumns' => array('disabled' => 'hidden'),
+        'enablecolumns' => ['disabled' => 'hidden'],
         'default_sortby' => 'ORDER BY label_key',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tev_label') . 'ext_icon.png',
         'dividers2tabs' => 2
-    ),
-    'interface' => array(
+    ],
+    'interface' => [
         'showRecordFieldList' => 'hidden, label_key, label_value, front_end'
-    ),
-    'columns' => array(
-        'hidden' => array(
+    ],
+    'columns' => [
+        'hidden' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
                 'default' => '0'
-            )
-        ),
-        'label_key' => array(
+            ]
+        ],
+        'label_key' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels.label_key',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '30'
-            )
-        ),
-        'label_value' => array(
+            ]
+        ],
+        'label_value' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels.label_value',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'size' => '1000'
-            )
-        ),
-        'front_end' => array(
+            ]
+        ],
+        'front_end' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels.front_end',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
                 'default' => '0'
-            )
-        )
-    ),
-    'types' => array(
-        '0' => array('showitem' => '
+            ]
+        ]
+    ],
+    'types' => [
+        '0' => ['showitem' => '
             hidden,
             label_key,
             label_value,
             front_end
             '
-        )
-    )
-);
+        ]
+    ]
+];

@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => '3ev Label',
     'description' => 'Manage functional copy labels through the database',
     'category' => 'frontend',
@@ -17,17 +17,14 @@ $EM_CONF[$_EXTKEY] = array(
     'modify_tables' => '',
     'clearCacheOnLoad' => 0,
     'lockType' => '',
-    'version' => '1.1.3',
-    'constraints' => array(
-        'depends' => array(
-            'typo3' => '6.1.0-0.0.0',
-            'php' => '5.3.7-0.0.0',
-            'extbase' => '6.1.0-0.0.0',
-            'fluid' => '6.1.0-0.0.0',
-        ),
-        'conflicts' => array(
-        ),
-        'suggests' => array(
-        ),
-    )
-);
+    'version' => '2.0.0',
+    'constraints' => [
+        'depends' => [
+            'typo3' => '7.0.0-0.0.0',
+            'php' => '5.5.0-0.0.0',
+            'tev' => '2.0.0-0.0.0',
+        ],
+        'conflicts' => [],
+        'suggests' => [],
+    ]
+];

@@ -2,6 +2,8 @@
 
 namespace Tev\TevLabel\Command;
 
+use Tev\Tev\Command\BaseCommandController;
+
 /**
  * Label import script.
  *
@@ -9,7 +11,7 @@ namespace Tev\TevLabel\Command;
  * @package Tev\TevLabel
  * @subpackage Command
  */
-class LabelCommandController extends \Tx_Tev_Command_BaseCommandController
+class LabelCommandController extends BaseCommandController
 {
     // Path to the directory where the labels are stored
     const DATA_PATH = '/data/translate';
@@ -55,7 +57,7 @@ class LabelCommandController extends \Tx_Tev_Command_BaseCommandController
                     if (!$dbLabel) {
                         $this->out("Inserting new label '{$key}'", 4);
 
-                        $insertFields = array(
+                        $insertFields = [
                             'pid' => $storage,
                             'tstamp' => time(),
                             'crdate' => time(),
@@ -64,7 +66,7 @@ class LabelCommandController extends \Tx_Tev_Command_BaseCommandController
                             'hidden' => 0,
                             'label_key' => $key,
                             'label_value' => $value
-                        );
+                        ];
 
                         $db->exec_INSERTquery(
                             'tx_tevlabel_labels',
