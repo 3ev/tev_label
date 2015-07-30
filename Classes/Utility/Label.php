@@ -57,8 +57,10 @@ class Label
 
         // Replace markers in the label with dynamic values
         $replaceValues = function ($label) use ($markers) {
-            foreach ($markers as $key => $value) {
-                $label = str_replace($key, $value, $label);
+            if ($markers) {
+                foreach ($markers as $key => $value) {
+                    $label = str_replace($key, $value, $label);
+                }
             }
             return $label;
         };
@@ -71,7 +73,7 @@ class Label
                 $labels = $db->exec_SELECTgetRows(
                     'label_key, label_value',
                     'tx_tevlabel_labels',
-                    'hidden = 0 AND deleted = 0 AND pid  = ' . $db->quoteStr($storageUid)
+                    'hidden = 0 AND deleted = 0 AND pid  = ' . $db->quoteStr($storageUid, null)
                 );
                 $this->getCache()->set('labels_' . $storageUid, $labels);
             }
