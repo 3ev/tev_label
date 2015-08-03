@@ -9,7 +9,6 @@ return [
         'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'searchFields' => 'title,label_key,label_value',
-        
         'enablecolumns' => ['disabled' => 'hidden'],
         'default_sortby' => 'ORDER BY label_key',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tev_label') . 'ext_icon.png',

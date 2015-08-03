@@ -1,7 +1,13 @@
 <?php
-
 namespace Tev\TevLabel;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Cache\Cache as CacheCore;
+use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
+
+/**
+ * Cache clearing utility.
+ */
 class Cache
 {
     /**
@@ -13,13 +19,13 @@ class Cache
     public function clear(&$params, &$pObj)
     {
         if (($params['cacheCmd'] === 'pages') || ($params['cacheCmd'] === 'all')) {
-            \TYPO3\CMS\Core\Cache\Cache::initializeCachingFramework();
+            CacheCore::initializeCachingFramework();
 
             try {
-                $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('tev_label_label_cache');
+                $cache = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('tev_label_label_cache');
 
                 $cache->flush();
-            } catch(\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
+            } catch(NoSuchCacheException $e) {
                 $cache = $GLOBALS['typo3CacheFactory']->create(
                     'tev_label_label_cache',
                     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tev_label_label_cache']['frontend'],

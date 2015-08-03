@@ -1,6 +1,7 @@
 #
 # Table structure for table 'tx_tevlabel_labels'
 #
+
 CREATE TABLE tx_tevlabel_labels (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,

@@ -1,6 +1,10 @@
 <?php
 namespace Tev\TevLabel\Utility;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Cache\Cache;
+use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
+
 /**
  * Utility to render database labels.
  *
@@ -8,24 +12,20 @@ namespace Tev\TevLabel\Utility;
  *
  * ```
  * /**
-     * @var \Tev\TevLabel\Utility\Label
-     * @inject
-    *\/
+ *  * @var \Tev\TevLabel\Utility\Label
+ *  * @inject
+ *  *\/
  * protected $label;
  *
  * $this->label->get($key, $markers);
  * ```
- *
- * @author Muthuswamy Kumaresan <muthu@3ev.com>, 3ev
- * @package Tev\TevLabel
- * @subpackage Utility
  */
 class Label
 {
     /**
      * Request cache for labels.
      *
-     * @var array $labelCache
+     * @var array
      */
     protected static $labelCache = [];
 
@@ -40,11 +40,11 @@ class Label
      * Search the database or local cache for the supplied label key, optionally
      * replacing the result with the markers array.
      *
-     * @param string $key              Label key
-     * @param array  $markers          Optional array of markes to replace in the translation.
-     *                                 Key/value pairs
-     * @param int    $storageFolderUid Storage folder override
-     * @return string Found label, or the key if key could not be found
+     * @param  string $key              Label key
+     * @param  array  $markers          Optional array of markes to replace in the translation.
+     *                                  Key/value pairs
+     * @param  int    $storageFolderUid Storage folder override
+     * @return string                   Found label, or the key if key could not be found
      */
     public function get($key, $markers = [], $storageUid = null)
     {
@@ -98,12 +98,12 @@ class Label
     private function getCache()
     {
         if (self::$cache === null) {
-            \TYPO3\CMS\Core\Cache\Cache::initializeCachingFramework();
+            Cache::initializeCachingFramework();
 
             try {
-                self::$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('tev_label_label_cache');
-            } catch(\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
-                self::$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheFactory')->create(
+                self::$cache = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('tev_label_label_cache');
+            } catch(NoSuchCacheException $e) {
+                self::$cache = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheFactory')->create(
                     'tev_label_label_cache',
                     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tev_label_label_cache']['frontend'],
                     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tev_label_label_cache']['backend'],

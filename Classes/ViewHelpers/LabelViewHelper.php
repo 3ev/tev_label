@@ -1,6 +1,7 @@
 <?php
-
 namespace Tev\TevLabel\ViewHelpers;
+
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * View helper to render database labels.
@@ -12,15 +13,13 @@ namespace Tev\TevLabel\ViewHelpers;
  *
  * <tvl:label key="my.label" markers="{_markerA: 'hello', _markerB: 'hello'}" />
  * ```
- *
- * @author Ben Constable <benconstable@3ev.com>, 3ev
- * @package Tev\TevLabel
- * @subpackage ViewHelpers
  */
-class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class LabelViewHelper extends AbstractViewHelper
 {
     /**
-     * @var array $labelCache Request cache for labels
+     * Request cache for labels
+     *
+     * @var array
      */
     protected static $labelCache = array();
 
@@ -31,7 +30,7 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
     protected $label;
 
     /**
-     * @see parent::initializeArguments()
+     * {@inheritdoc}
      */
     public function initializeArguments()
     {

@@ -6,22 +6,21 @@ use Tev\Tev\Command\BaseCommandController;
 
 /**
  * Label import script.
- *
- * @author Ben Constable <benconstable@3ev.com>, 3ev
- * @package Tev\TevLabel
- * @subpackage Command
  */
 class LabelCommandController extends BaseCommandController
 {
-    // Path to the directory where the labels are stored
+    /**
+     * Path to the directory where the labels are stored.
+     */
     const DATA_PATH = '/data/translate';
 
     /**
      * Import labels to the database.
      *
-     * @param string $site Name of folder containing labels in data/translate
-     * @param string $locale Local of labels to import e.g en/de. Maps to ini file name (en.ini/de.ini)
-     * @param int $storage Storage folder ID to import to
+     * @param  string $site    Name of folder containing labels in data/translate
+     * @param  string $locale  Local of labels to import e.g en/de. Maps to ini file name (en.ini/de.ini)
+     * @param  int    $storage Storage folder ID to import to
+     * @return void
      */
     public function importCommand($site, $locale, $storage)
     {
@@ -95,8 +94,9 @@ class LabelCommandController extends BaseCommandController
     /**
      * List labels and keys.
      *
-     * @param string $site Name of folder containing labels in data/translate
-     * @param string $locale Local of labels to import e.g en/de. Maps to ini file name (en.ini/de.ini)
+     * @param  string $site   Name of folder containing labels in data/translate
+     * @param  string $locale Local of labels to import e.g en/de. Maps to ini file name (en.ini/de.ini)
+     * @return void
      */
     public function listCommand($site, $locale)
     {
