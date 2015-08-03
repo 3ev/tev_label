@@ -3,6 +3,7 @@
     "description": "3ev Label TYPO3 Extension",
     "type": "typo3-cms-extension",
     "homepage": "https://github.com/3ev/tev_label",
+    "license": "MIT",
     "authors": [
         {
             "name": "3ev",

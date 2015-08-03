@@ -114,3 +114,8 @@ $this->label->get($key, $markers);
 
 - [TYPO3 Fluid Extensions](https://github.com/FluidTYPO3)
 - [3ev Tev Core](https://github.com/3ev/tev)
+
+##License
+
+MIT © 3ev
+
