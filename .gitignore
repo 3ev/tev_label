@@ -1,3 +1,8 @@
-vendor/
+# OS
+
 .DS_Store
-.phing_targets
+
+# Composer
+
+/vendor
+/composer.lock
