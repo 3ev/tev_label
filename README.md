@@ -1,24 +1,20 @@
-# 3ev Label TYPO3 Extension
+#Tev Label TYPO3 Extension
 
-Allows management of functional labels through the database and list views.
+[![Latest Stable Version](https://poser.pugx.org/3ev/tev_label/version)](https://packagist.org/packages/3ev/tev_label) [![License](https://poser.pugx.org/3ev/tev_label/license)](https://packagist.org/packages/3ev/tev_label)
 
-## Installation
+> Allows management of functional labels through the database and list views.
 
-Install into TYPO3 with Composer. Add the following config to your `composer.json`:
+##Installation
 
-```json
-{
-    "require": {
-        "3ev/tev_label": "master"
-    }
-}
+```
+$ composer require "3ev/tev_label"
 ```
 
-## Usage
+##Usage
 
 `tev_label` provides an import script and view helper to use labels.
 
-### Import labels from `.ini` files
+###Import labels from .ini files
 
 Labels should site in a folder called `/data/translate/site_name`, which should
 be a directory above your TYPO3 installation. Inside the folder, you should create
@@ -41,9 +37,9 @@ my.label.one = "First label"
 my.label.two = "Second label with :marker"
 ```
 
-### Commands
+###Commands
 
-#### label:import
+####label:import
 
 ```sh
 Import labels to the database.
@@ -61,7 +57,7 @@ ARGUMENTS:
   --storage            Storage folder ID to import to
 ```
 
-#### label:list
+####label:list
 
 ```sh
 List labels and keys.
@@ -78,7 +74,7 @@ ARGUMENTS:
                        name (en.ini/de.ini)
 ```
 
-### View helpers
+###View helpers
 
 There is a single view helper available, which will render a label from the database:
 
@@ -92,7 +88,7 @@ There is a single view helper available, which will render a label from the data
 <tvl:label key="my.label.one" markers="{_marker: 'marker replaced'}" />
 ```
 
-### Normal helpers
+###Normal helpers
 
 Functions same as the view helper but can be used in controllers and other php files.
 
@@ -110,12 +106,6 @@ Use the get() method
 $this->label->get($key, $markers);
 ```
 
-## Dependencies
-
-- [TYPO3 Fluid Extensions](https://github.com/FluidTYPO3)
-- [3ev Tev Core](https://github.com/3ev/tev)
-
 ##License
 
 MIT © 3ev
-
