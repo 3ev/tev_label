@@ -15,7 +15,7 @@ return [
         'dividers2tabs' => 2
     ],
     'interface' => [
-        'showRecordFieldList' => 'hidden, label_key, label_value, front_end'
+        'showRecordFieldList' => 'hidden, label_key, label_value'
     ],
     'columns' => [
         'hidden' => [
@@ -41,22 +41,13 @@ return [
                 'type' => 'text',
                 'size' => '1000'
             ]
-        ],
-        'front_end' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels.front_end',
-            'config' => [
-                'type' => 'check',
-                'default' => '0'
-            ]
         ]
     ],
     'types' => [
         '0' => ['showitem' => '
             hidden,
             label_key,
-            label_value,
-            front_end
+            label_value
             '
         ]
     ]

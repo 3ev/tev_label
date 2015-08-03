@@ -11,8 +11,7 @@ CREATE TABLE tx_tevlabel_labels (
 	deleted tinyint(4) DEFAULT '0' NOT NULL,
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
 	label_key tinytext NOT NULL,
-	label_value text NOT NULL,
-	front_end tinyint(4) DEFAULT '0' NOT NULL
+	label_value text NOT NULL
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
