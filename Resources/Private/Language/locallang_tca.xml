@@ -6,9 +6,9 @@
     </meta>
     <data type="array">
         <languageKey index="default" type="array">
-            <label index="tx_tevlabel_labels">Labels</label>
-            <label index="tx_tevlabel_labels.label_key">Key</label>
-            <label index="tx_tevlabel_labels.label_value">Value</label>
+            <label index="tx_tevlabel_domain_model_label">Labels</label>
+            <label index="tx_tevlabel_domain_model_label.label_key">Key</label>
+            <label index="tx_tevlabel_domain_model_label.label_value">Value</label>
         </languageKey>
     </data>
 </T3locallang>

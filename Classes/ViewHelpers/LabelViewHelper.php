@@ -17,14 +17,7 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 class LabelViewHelper extends AbstractViewHelper
 {
     /**
-     * Request cache for labels
-     *
-     * @var array
-     */
-    protected static $labelCache = array();
-
-    /**
-     * @var \Tev\TevLabel\Utility\Label
+     * @var \Tev\TevLabel\LabelManager
      * @inject
     */
     protected $label;
@@ -48,9 +41,9 @@ class LabelViewHelper extends AbstractViewHelper
      */
     public function render()
     {
-        $key        = trim($this->arguments['key']);
-        $markers    = $this->arguments['markers'];
-
-        return $this->label->get($key, $markers);
+        return $this->label->get(
+            trim($this->arguments['key']),
+            $this->arguments['markers']
+        );
     }
 }

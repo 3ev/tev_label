@@ -2,7 +2,7 @@
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels',
+        'title' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_domain_model_label',
         'label' => 'label_key',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -28,7 +28,7 @@ return [
         ],
         'label_key' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels.label_key',
+            'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_domain_model_label.label_key',
             'config' => [
                 'type' => 'input',
                 'size' => '30'
@@ -36,7 +36,7 @@ return [
         ],
         'label_value' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_labels.label_value',
+            'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_domain_model_label.label_value',
             'config' => [
                 'type' => 'text',
                 'size' => '1000'
