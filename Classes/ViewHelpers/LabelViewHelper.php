@@ -19,7 +19,7 @@ class LabelViewHelper extends AbstractViewHelper
     /**
      * @var \Tev\TevLabel\LabelManager
      * @inject
-    */
+     */
     protected $label;
 
     /**
