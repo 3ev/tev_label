@@ -1,133 +1,69 @@
 <?php
-
 namespace Tev\TevLabel\Command;
 
-use Tev\Tev\Command\BaseCommandController;
+use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
+use Tev\TevLabel\Domain\Model\Label;
 
 /**
  * Label import script.
  */
-class LabelCommandController extends BaseCommandController
+class LabelCommandController extends CommandController
 {
     /**
-     * Path to the directory where the labels are stored.
+     * Label repo.
+     *
+     * @var \Tev\TevLabel\Domain\Repository\LabelRepository
+     * @inject
      */
-    const DATA_PATH = '/data/translate';
+    private $labelRepo;
 
     /**
-     * Import labels to the database.
+     * Import labels from a .ini file to the database.
      *
-     * @param  string $site    Name of folder containing labels in data/translate
-     * @param  string $locale  Local of labels to import e.g en/de. Maps to ini file name (en.ini/de.ini)
+     * @param  string $path    Label file path
      * @param  int    $storage Storage folder ID to import to
      * @return void
      */
-    public function importCommand($site, $locale, $storage)
+    public function importCommand($path, $storage)
     {
-        $this->startMessage("Import labels for '$site' in locale '$locale'");
-
-        $path = $this->getPath($site, $locale);
+        $this->outputLine('Importing labels');
 
         if (!file_exists($path)) {
-            $this->out('Could not find label file', 2);
-        } elseif ($storage === null) {
-            $this->out('Not import Storage ID given');
-        } else {
-            $labels = parse_ini_file($path);
-
-            if (count($labels)) {
-                $this->out('Found ' . count($labels) . ' labels', 2);
-                $this->out();
-
-                $inserted = 0;
-                $skipped = 0;
-                $db = $GLOBALS['TYPO3_DB'];
-
-                foreach ($labels as $key => $value) {
-                    $result = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-                        'uid',
-                        'tx_tevlabel_labels',
-                        'hidden = 0 AND deleted = 0 AND label_key = ' . $db->fullQuoteStr($key) . ' AND pid  = ' . $db->quoteStr($storage)
-                    );
-
-                    $dbLabel = count($result);
-
-                    // Insert if label is new
-                    if (!$dbLabel) {
-                        $this->out("Inserting new label '{$key}'", 4);
-
-                        $insertFields = [
-                            'pid' => $storage,
-                            'tstamp' => time(),
-                            'crdate' => time(),
-                            'cruser_id' => 0,
-                            'deleted' => 0,
-                            'hidden' => 0,
-                            'label_key' => $key,
-                            'label_value' => $value
-                        ];
-
-                        $db->exec_INSERTquery(
-                            'tx_tevlabel_labels',
-                            $insertFields
-                        );
-
-                        $inserted++;
-                    } else {
-                        $this->out("Label '{$key}', already exists, did not insert", 4);
-                        $skipped++;
-                    }
-                }
-
-                // Show import results
-                $this->out('');
-                $this->out('Inserted ' . $inserted . ' new label(s).', 2);
-                $this->out('Skipped ' . $skipped . ' existing label(s).', 2);
-            } else {
-                $this->out('No labels found, did not import.', 2);
-            }
+            $this->outputLine('Could not find label file');
+            $this->quit(1);
         }
 
-        $this->endMessage();
-    }
+        $labels = parse_ini_file($path);
 
-    /**
-     * List labels and keys.
-     *
-     * @param  string $site   Name of folder containing labels in data/translate
-     * @param  string $locale Local of labels to import e.g en/de. Maps to ini file name (en.ini/de.ini)
-     * @return void
-     */
-    public function listCommand($site, $locale)
-    {
-        $this->startMessage("Listing labels for '$site' in locale '$locale'");
+        if (count($labels)) {
+            $this->outputLine('Found ' . count($labels) . ' labels');
 
-        $path = $this->getPath($site, $locale);
-
-        if (!file_exists($path)) {
-            $this->out('Could not find label file', 2);
-        } else {
-            $labels = parse_ini_file($path);
+            $inserted = 0;
+            $skipped = 0;
 
             foreach ($labels as $key => $value) {
-                $this->out('Key: ' . $key, 4);
-                $this->out('Value: ' . $value, 6);
+                $existing = $this->labelRepo->findOneByLabelKey($key);
+
+                if (!$existing) {
+                    $label = new Label;
+                    $label->setPid($storage);
+                    $label->setLabelKey($key);
+                    $label->setLabelValue($value);
+
+                    $this->labelRepo->add($label);
+
+                    $inserted++;
+                } else {
+                    $skipped++;
+                }
             }
+
+            $this->outputLine('Inserted ' . $inserted . ' new label(s).');
+            $this->outputLine('Skipped ' . $skipped . ' existing label(s).');
+            $this->quit();
+        } else {
+            $this->outputLine('No labels found to import');
+            $this->quit();
         }
-
-        $this->endMessage();
-    }
-
-    /**
-     * Get the full path to the label file that's being imported.
-     *
-     * @return string
-     */
-    private function getPath($site, $locale)
-    {
-        return
-            PATH_site . '..' . self::DATA_PATH . '/' .
-            $site . '/' .
-            $locale . '.ini';
     }
 }
