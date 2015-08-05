@@ -14,14 +14,14 @@ class Label extends AbstractEntity
      * @var string
      * @validate NotEmpty
      */
-    private $labelKey;
+    protected $labelKey;
 
     /**
      * Value.
      *
      * @var string
      */
-    private $labelValue;
+    protected $labelValue;
 
     /**
      * Get the label key.
