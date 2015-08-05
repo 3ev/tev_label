@@ -84,7 +84,7 @@ class LabelManager implements SingletonInterface
         if ($this->labelCache === null) {
             if (($this->labelCache = $this->getCache()->get('tev_labels')) === false) {
                 $this->labelCache = $this->labelRepo->findAllKeysAndValues();
-                $this->getCache()->set('tev_labels', $labels);
+                $this->getCache()->set('tev_labels', $this->labelCache);
             }
         }
 
