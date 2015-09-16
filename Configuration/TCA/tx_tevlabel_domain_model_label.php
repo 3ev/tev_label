@@ -31,7 +31,8 @@ return [
             'label' => 'LLL:EXT:tev_label/Resources/Private/Language/locallang_tca.xml:tx_tevlabel_domain_model_label.label_key',
             'config' => [
                 'type' => 'input',
-                'size' => '30'
+                'size' => '30',
+                'eval' => 'unique,trim,required'
             ]
         ],
         'label_value' => [
