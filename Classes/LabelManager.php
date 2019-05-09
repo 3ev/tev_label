@@ -90,8 +90,6 @@ class LabelManager implements SingletonInterface
 
         if (isset($this->labelCache[$key])) {
             return $this->replaceValues($this->labelCache[$key], $markers);
-        } else {
-            return $key;
         }
     }
 
