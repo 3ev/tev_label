@@ -94,7 +94,7 @@ class LabelManager implements SingletonInterface
             $ini = parse_ini_file(dirname($_SERVER['DOCUMENT_ROOT']).'/config/phing.properties');
             $env = $ini['build.environment'];
 
-            if($returnKeyOnEmpty || $env == 'Development') {
+            if($returnKeyOnEmpty == 'true' || $env == 'Development') {
                 return $key;
             }
         }
