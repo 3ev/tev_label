@@ -31,6 +31,7 @@ class LabelViewHelper extends AbstractViewHelper
 
         $this->registerArgument('key', 'string', 'Label Key', true);
         $this->registerArgument('markers', 'array', 'Replace markers');
+        $this->registerArgument('returnKeyOnEmpty', 'string', 'Show Label Key');
     }
 
     /**
@@ -43,7 +44,8 @@ class LabelViewHelper extends AbstractViewHelper
     {
         return $this->label->get(
             trim($this->arguments['key']),
-            $this->arguments['markers']
+            $this->arguments['markers'],
+            $this->arguments['returnKeyOnEmpty']
         );
     }
 }

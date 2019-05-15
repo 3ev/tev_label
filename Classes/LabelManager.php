@@ -79,7 +79,7 @@ class LabelManager implements SingletonInterface
      *                         Key/value pairs
      * @return string          Found label, or the key if key could not be found
      */
-    public function get($key, $markers = [])
+    public function get($key, $markers = [], $returnKeyOnEmpty = 'true')
     {
         if ($this->labelCache === null) {
             if (($this->labelCache = $this->getCache()->get('tev_labels')) === false) {
@@ -91,7 +91,12 @@ class LabelManager implements SingletonInterface
         if (isset($this->labelCache[$key])) {
             return $this->replaceValues($this->labelCache[$key], $markers);
         } else {
-            return $key;
+            $ini = parse_ini_file(dirname($_SERVER['DOCUMENT_ROOT']).'/config/phing.properties');
+            $env = $ini['build.environment'];
+
+            if($returnKeyOnEmpty || $env == 'Development') {
+                return $key;
+            }
         }
     }
 
