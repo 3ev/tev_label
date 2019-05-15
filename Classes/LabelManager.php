@@ -91,7 +91,10 @@ class LabelManager implements SingletonInterface
         if (isset($this->labelCache[$key])) {
             return $this->replaceValues($this->labelCache[$key], $markers);
         } else {
-            if($_ENV['NODE_ENV'] == 'Development') {
+            $ini = parse_ini_file(dirname($_SERVER['DOCUMENT_ROOT']).'/config/phing.properties');
+            $env = $ini['build.environment'];
+
+            if($returnKeyOnEmpty || $env == 'Development') {
                 return $key;
             }
         }
