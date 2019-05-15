@@ -79,7 +79,7 @@ class LabelManager implements SingletonInterface
      *                         Key/value pairs
      * @return string          Found label, or the key if key could not be found
      */
-    public function get($key, $markers = [])
+    public function get($key, $markers = [], $returnKeyOnEmpty = 'true')
     {
         if ($this->labelCache === null) {
             if (($this->labelCache = $this->getCache()->get('tev_labels')) === false) {
