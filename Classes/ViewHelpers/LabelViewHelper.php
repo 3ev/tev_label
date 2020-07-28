@@ -42,9 +42,10 @@ class LabelViewHelper extends AbstractViewHelper
      */
     public function render()
     {
+
         return $this->label->get(
             trim($this->arguments['key']),
-            $this->arguments['markers'],
+            (($this->arguments['markers']) ? $this->arguments['markers'] : []),
             $this->arguments['returnKeyOnEmpty']
         );
     }
