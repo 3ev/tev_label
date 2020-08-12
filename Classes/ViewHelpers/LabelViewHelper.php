@@ -50,7 +50,7 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelpe
     public function render()
     {
         $key        = trim($this->arguments['key']);
-        $markers    = $this->arguments['markers'];
+        $markers    =  (($this->arguments['markers']) ? $this->arguments['markers'] : array());
 
         return $this->label->get($key, $markers);
     }
